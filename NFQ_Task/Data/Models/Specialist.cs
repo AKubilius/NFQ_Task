@@ -1,8 +1,9 @@
-﻿namespace NFQ_Task.Data.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace NFQ_Task.Data.Models
 {
-    public class Specialist
+    public class Specialist : IdentityUser
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public virtual ICollection<Appointment> Appointments { get; set; }
     }
 }

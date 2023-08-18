@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NFQ_Task.Data;
 
@@ -11,9 +12,10 @@ using NFQ_Task.Data;
 namespace NFQ_Task.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818093739_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,10 +104,12 @@ namespace NFQ_Task.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -142,10 +146,12 @@ namespace NFQ_Task.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -173,8 +179,10 @@ namespace NFQ_Task.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<string>("SpecialistId")
-                        .IsRequired()
+                    b.Property<int>("SpecialistId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SpecialistId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Status")
@@ -183,7 +191,7 @@ namespace NFQ_Task.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SpecialistId");
+                    b.HasIndex("SpecialistId1");
 
                     b.ToTable("Appointments");
                 });
@@ -308,9 +316,7 @@ namespace NFQ_Task.Data.Migrations
                 {
                     b.HasOne("NFQ_Task.Data.Models.Specialist", "Specialist")
                         .WithMany("Appointments")
-                        .HasForeignKey("SpecialistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SpecialistId1");
 
                     b.Navigation("Specialist");
                 });
