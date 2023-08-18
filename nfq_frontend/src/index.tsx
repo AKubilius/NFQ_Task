@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import NavBar from './Components/NavBar/Navbar'
 import LoginPage from './Pages/LoginPage';
+import InfoPage from './Pages/InfoPage';
+import SpecialistPage from './Pages/SpecialistPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -19,6 +21,7 @@ root.render(
   <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/info" element={<SpecialistPage />} />
        
       </Routes>
   </React.StrictMode>

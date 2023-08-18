@@ -26,7 +26,7 @@ export default function BookAppointment() {
         }}
       >
         
-       <Specialist/>
+       <Specialist name="Meow"/>
 
       </Box>
     </Container>
