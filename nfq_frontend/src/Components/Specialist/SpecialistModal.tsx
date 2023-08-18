@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { makePostRequest } from '../Api/api';
 
 const modalStyle = {
   position: 'absolute' as 'absolute',
@@ -22,10 +23,25 @@ const buttonStyle = {
     backgroundColor:'#A19DD3'
 }
 
-export  function SpecialistModal() {
+export  function SpecialistModal( id:any) {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [code, setCode] = React.useState([])
+  const handleOpen = () => {
+    createAppointment()
+    setOpen(true);
+
+  }
   const handleClose = () => setOpen(false);
+
+  async function createAppointment() {
+
+    const data = await makePostRequest('https://localhost:7214/api/Appointment',  id.id );
+    setCode(data)
+    return data;
+  }
+
+
+
   return (
     <div>
       <Button variant="contained" sx={buttonStyle} onClick={handleOpen}>Select</Button>
@@ -38,7 +54,7 @@ export  function SpecialistModal() {
             Your code
           </Typography>
           <Typography  variant='h1'>
-            01354
+            {code}
           </Typography>
         </Box>
       </Modal>

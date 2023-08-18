@@ -2,9 +2,11 @@ import Box from '@mui/material/Box/Box'
 import Button from '@mui/material/Button/Button'
 import React from 'react'
 import {SpecialistModal} from './SpecialistModal';
+import Typography from '@mui/material/Typography/Typography';
 
 interface ISpecialist {
-  name: string;
+  username: string;
+  id: string;
 }
 
 const style = {
@@ -21,9 +23,14 @@ const style = {
 
 
 export const Specialist: React.FC<ISpecialist> = ({
-  name
+  username,
+  id
 }) => {
+
+
+
   return (
+
     <Box width={1} sx={{
         display:'flex',
         flexDirection:'row',
@@ -31,11 +38,13 @@ export const Specialist: React.FC<ISpecialist> = ({
          alignContent: 'end',
          marginBottom:2
       }}>
-       <div>
-        Petras Petraitis
-       </div>
+
+       <Typography>
+        {username}
+       </Typography>
         
-      <SpecialistModal/>
+      <SpecialistModal
+      id={id}/>
       </Box>
   )
 }
